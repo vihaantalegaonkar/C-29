@@ -22,7 +22,14 @@ class Block{
           rect(0,0,this.width, this.height);
          }else{
            World.remove(world, this.body);
+           score += 10;
          }
         pop();
       }
-}
+      /*
+      Score(){
+        if(this.visiblity<0 && this.visiblity>= -1105){
+          score =+ 5;
+        }
+      }*/
+ }

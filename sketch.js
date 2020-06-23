@@ -8,9 +8,17 @@ var holder,ball,ground;
 var stand1,stand2;
 var slingShot;
 var polygon_img;
+var score = 0;
+var bg = "skyblue";
 
 function preload(){
   polygon_img=loadImage("polygon.png");
+  getBGimage();
+  if(getBGimage){
+    bg = "skyblue";
+  } else {
+    bg = "black";
+  }
 }
 
 function setup() {
@@ -61,7 +69,11 @@ function setup() {
 }
 
 function draw() {
-  background(56,44,44); 
+  background(bg);
+  noStroke();
+  textSize(35);
+  fill("white");
+  text("SCORE:"+ score, width-300, 50); 
 
   textSize(20);
   fill("yellow");
@@ -142,3 +154,14 @@ function keyPressed(){
   }
   }
  
+async function getBGimage(){
+    var response = await fetch("http://worldtimeapi.org/api/timezone/Asia/Kolkata");
+    var responseJSON = await response.json();
+    var datetime = responseJSON.datetime;
+    var r = datetime.slice(11,13);
+    if(r>= 6 && r<=19){
+        return true;
+    } else {
+        return false;
+    }
+}
